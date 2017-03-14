@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @course.type %>
+</p>
+
+<p>
+  <strong>Term:</strong>
+  <%= @course.term %>
+</p>
+
+<p>
+  <strong>Code:</strong>
+  <%= @course.code %>
+</p>
+
+<p>
+  <strong>Continuity:</strong>
+  <%= @course.continuity_id %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @course.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @course.description %>
+</p>
+
+<p>
+  <strong>Credites:</strong>
+  <%= @course.credites %>
+</p>
+
+<p>
+  <strong>Independent study:</strong>
+  <%= @course.independent_study %>
+</p>
+
+<p>
+  <strong>Repuirements:</strong>
+  <%= @course.repuirements %>
+</p>
+
+<%= link_to 'Edit', edit_course_path(@course) %> |
+<%= link_to 'Back', courses_path %>
