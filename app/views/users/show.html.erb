@@ -1,24 +1,21 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Account:</strong>
-  <%= @user.account %>
-</p>
-
-<p>
-  <strong>Password:</strong>
-  <%= @user.password %>
-</p>
-
-<p>
-  <strong>Firstname:</strong>
-  <%= @user.firstname %>
-</p>
-
-<p>
-  <strong>Lastname:</strong>
-  <%= @user.lastname %>
-</p>
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-6">
+            <div class="well well-sm">
+                <div class="row">
+                    <div class="col-sm-6 col-md-4">
+                        <img src="http://placehold.it/380x500" alt="" class="img-rounded img-responsive" />
+                    </div>
+                    <div class="col-sm-6 col-md-8">
+                        <h4>
+                          <%= @user.firstname %>
+                          <%= @user.lastname %>
+                        </h4>
+                        <i class="glyphicon glyphicon-envelope"></i><%= @user.account %><br/><br/>
+                        <button type="button" class="btn btn-primary">Reset Password</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
