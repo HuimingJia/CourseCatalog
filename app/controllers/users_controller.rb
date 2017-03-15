@@ -28,10 +28,11 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      flash[:success] = "Welcome to the Sample App!"
+      flash[:success] = "Welcome to the CourseCatalog!"
       redirect_to @user
     else
-      render 'new'
+      format.html { render :new }
+      format.json { render json: @user.errors, status: :unprocessable_entity }
     end
     #
     # respond_to do |format|
