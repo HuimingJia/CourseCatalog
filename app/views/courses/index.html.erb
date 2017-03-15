@@ -2,15 +2,13 @@
 
 <h1>Courses</h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>Code</th>
       <th>Name</th>
       <th>Description</th>
-      <th>Credits</th>
       <th>Independent study</th>
-      <th>Requirements</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -21,9 +19,7 @@
         <td><%= course.code %></td>
         <td><%= course.name %></td>
         <td><%= course.description %></td>
-        <td><%= course.credits %></td>
         <td><%= course.independent_study %></td>
-        <td><%= course.requirements %></td>
         <td><%= link_to 'Show', course %></td>
         <td><%= link_to 'Edit', edit_course_path(course) %></td>
         <td><%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' } %></td>
