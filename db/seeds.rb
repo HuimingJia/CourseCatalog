@@ -17,8 +17,7 @@ end
 
 json = ActiveSupport::JSON.decode(File.read('db/course.json'))
 json.each do |item|
-  Course.create(:code => item['code'], :name => item['name'], :description => item['description'],
-  :credits => item['credits'].to_i, :independent_study => item['independent_study'], :requirements => item['requirements'])
+  Course.create(:code => item['code'], :name => item['name'], :description => item['description'],:independent_study => item['independent_study'])
 end
 
 json = ActiveSupport::JSON.decode(File.read('db/instructor.json'))
