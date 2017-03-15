@@ -4,14 +4,14 @@
             <div class="well well-sm">
                 <div class="row">
                     <div class="col-sm-6 col-md-4">
-                        <img src="http://placehold.it/380x500" alt="" class="img-rounded img-responsive" />
+                        <%= gravatar_for @user %>
                     </div>
                     <div class="col-sm-6 col-md-8">
                         <h4>
                           <%= @user.firstname %>
                           <%= @user.lastname %>
                         </h4>
-                        <i class="glyphicon glyphicon-envelope"></i><%= @user.account %><br/><br/>
+                        <i class="glyphicon glyphicon-envelope"></i>  <%= @user.account %><br/><br/>
                         <button type="button" class="btn btn-primary">Reset Password</button>
                     </div>
                 </div>
