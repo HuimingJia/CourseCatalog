@@ -32,8 +32,9 @@ class UsersController < ApplicationController
       flash[:success] = "Welcome to the CourseCatalog!"
       redirect_to @user
     else
-      format.html { render :new }
-      format.json { render json: @user.errors, status: :unprocessable_entity }
+      render 'new'
+      # format.html { render :new }
+      # format.json { render json: @user.errors, status: :unprocessable_entity }
     end
     #
     # respond_to do |format|

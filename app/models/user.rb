@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  has_many :enrollment
+
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   before_save { self.account = account.downcase }
   validates :firstname, presence: true, length: { maximum: 50 }
@@ -14,5 +16,4 @@ class User < ApplicationRecord
                                                   BCrypt::Engine.cost
     BCrypt::Password.create(string, cost: cost)
   end
-
 end
