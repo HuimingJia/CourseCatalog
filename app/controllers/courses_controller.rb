@@ -5,6 +5,14 @@ class CoursesController < ApplicationController
   # GET /courses.json
   def index
     @courses = Course.all
+    @state = Hash.new
+    @courses.each do |course|
+      if course.users.include?(current_user)
+        @state[course.id] = true
+      else
+        @state[course.id] = false
+      end
+    end
   end
 
   # GET /courses/1

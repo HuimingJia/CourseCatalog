@@ -19,23 +19,38 @@
         </div>
     </div>
 </div>
+
+<h1>Registered Courses</h1>
 <table class="table">
   <thead>
     <tr>
-      <th>Code</th>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Independent study</th>
+      <th class="col-md-1">Code</th>
+      <th class="col-md-2">Name</th>
+      <th class="col-md-6">Description</th>
+      <th class="col-md-1 center">IS</th>
+      <th class="col-md-1 center">Select</th>
     </tr>
   </thead>
-
   <tbody>
     <% registered_courses.each do |course| %>
       <tr>
         <td><%= course.code %></td>
         <td><%= course.name %></td>
         <td><%= course.description %></td>
-        <td><%= course.independent_study %></td>
+        <td class="center">
+          <% if course.independent_study == 't'%>
+            <h4><span class="label label-info">Yes</span></h4>
+          <% else %>
+            <h4><span class="label label-default">No</span></h4>
+          <% end %>
+        </td>
+          <td class="center">
+            <%= form_for(:enrollment, :method => :delete, url: enrollments_path) do |f| %>
+            <%= f.hidden_field :user_id, value: current_user.id%>
+            <%= f.hidden_field :course_id, value: course.id%>
+            <%= f.button "Cancel", class: 'btn btn-warning', data: { confirm: "Are you sure you Cancel this class?" } %>
+            <% end %>
+          </td>
       </tr>
     <% end %>
   </tbody>

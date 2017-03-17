@@ -1,9 +1,13 @@
 class SearchController < ApplicationController
   def new
-    name  = params[:search][:name]
-    subject  = params[:search][:subject]
+    @name  = params[:search][:name]
+    @subject  = params[:search][:subject] || 'All'
 
-    @courses = Course.where(name: params[:search][:name])
+    if @subject == 'All'
+      @courses = Course.where(name: params[:search][:name])
+    else
+      @courses = Course.where(name: params[:search][:name])
+    end
     @state = Hash.new
     @courses.each do |course|
       if course.users.include?(current_user)
@@ -12,6 +16,20 @@ class SearchController < ApplicationController
         @state[course.id] = false
       end
     end
-      @subjects = Subject.all
+    @subjects = Array.new
+    @subjects.push('All')
+    Subject.all.each do |subject|
+      @subjects.push(subject.name)
+    end
+  end
+
+  def page
+    @subjects = Array.new
+    @subjects.push('All')
+    Subject.all.each do |subject|
+      @subjects.push(subject.name)
+    end
+    @subject  = 'All'
+    render 'page'
   end
 end
