@@ -15,4 +15,8 @@ module SessionsHelper
     session.delete(:user_id)
     @current_user = nil
   end
+
+  def registered_courses
+    @courses = current_user.courses
+  end
 end

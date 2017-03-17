@@ -12,15 +12,16 @@ Instructor.delete_all
 
 json = ActiveSupport::JSON.decode(File.read('db/subject.json'))
 json.each do |item|
-  Subject.create(:abbreviation => item['abbreviation'], :name => item['name'])
+  Subject.create(:identifier => item['id'],:abbreviation => item['abbreviation'], :name => item['name'])
 end
 
 json = ActiveSupport::JSON.decode(File.read('db/course.json'))
 json.each do |item|
+  subjects_json = item['subjects']
   Course.create(:code => item['code'], :name => item['name'], :description => item['description'],:independent_study => item['independent_study'])
 end
 
 json = ActiveSupport::JSON.decode(File.read('db/instructor.json'))
 json.each do |item|
-  Instructor.create(:first => item['first'], :middle => item['middle'], :last => item['last'], :email => item['email'])
+  Instructor.create(:identifier => item['id'], :first => item['first'], :middle => item['middle'], :last => item['last'], :email => item['email'])
 end

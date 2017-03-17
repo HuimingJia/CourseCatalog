@@ -4,6 +4,14 @@ class SearchController < ApplicationController
     subject  = params[:search][:subject]
 
     @courses = Course.where(name: params[:search][:name])
-    @subjects = Subject.all
+    @state = Hash.new
+    @courses.each do |course|
+      if course.users.include?(current_user)
+        @state[course.id] = true
+      else
+        @state[course.id] = false
+      end
+    end
+      @subjects = Subject.all
   end
 end

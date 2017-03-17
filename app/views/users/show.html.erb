@@ -19,3 +19,24 @@
         </div>
     </div>
 </div>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Code</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Independent study</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% registered_courses.each do |course| %>
+      <tr>
+        <td><%= course.code %></td>
+        <td><%= course.name %></td>
+        <td><%= course.description %></td>
+        <td><%= course.independent_study %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

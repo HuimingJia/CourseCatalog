@@ -54,7 +54,7 @@ class EnrollmentsController < ApplicationController
   # DELETE /enrollments/1
   # DELETE /enrollments/1.json
   def destroy
-    @enrollment.destroy
+    Enrollment.where(course_id: params[:enrollment][:course_id].to_i, user_id:params[:enrollment][:user_id].to_i).destroy_all
     respond_to do |format|
       format.html { redirect_to enrollments_url, notice: 'Enrollment was successfully destroyed.' }
       format.json { head :no_content }
@@ -64,11 +64,12 @@ class EnrollmentsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_enrollment
-      @enrollment = Enrollment.find(params[:id])
+      # @enrollment = Enrollment.new(course_id: params[:enrollment][:course_id], user_id:params[:enrollment][:user_id] )
+      @enrollment = Enrollment.new(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def enrollment_params
-      params.fetch(:enrollment, {})
+      params.require(:enrollment).permit(:user_id, :course_id)
     end
 end

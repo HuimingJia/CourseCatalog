@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   has_many :enrollments
-  has_many :courses, through: :enrollments
+  has_many :courses, :through => :enrollments
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   before_save { self.account = account.downcase }

@@ -5,6 +5,7 @@
 <table class="table">
   <thead>
     <tr>
+      <th>Id</th>
       <th>Email</th>
       <th>First</th>
       <th>Last</th>
@@ -14,6 +15,7 @@
   <tbody>
     <% @instructors.each do |instructor| %>
       <tr>
+        <td><%= instructor.identifier %></td>
         <td><%= instructor.email %></td>
         <td><%= instructor.first %></td>
         <td><%= instructor.last %></td>
@@ -21,7 +23,3 @@
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Instructor', new_instructor_path %>

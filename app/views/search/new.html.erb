@@ -19,7 +19,7 @@
       <th class="col-md-2">Name</th>
       <th class="col-md-6">Description</th>
       <th class="col-md-1 center">IS</th>
-      <th class="col-md-2 center">Select Class</th>
+      <th class="col-md-1 center">Select</th>
     </tr>
   </thead>
   <tbody>
@@ -35,13 +35,21 @@
             <h4><span class="label label-default">No</span></h4>
           <% end %>
         </td>
-        <td class="center">
-          <%= form_for(:enrollment, url: enrollments_path) do |f| %>
-            <%= f.hidden_field :user_id, value: current_user.id%>
-            <%= f.hidden_field :course_id, value: course.id%>
-            <%= f.button "Select", class: 'btn btn-success', data: { confirm: "Are you sure you select this class?" } %>
-          <% end %>
-        </td>
+          <td class="center">
+            <% if @state[course.id] == false %>
+              <%= form_for(:enrollment, :method => :post,url: enrollments_path) do |f| %>
+              <%= f.hidden_field :user_id, value: current_user.id%>
+              <%= f.hidden_field :course_id, value: course.id%>
+              <%= f.button "Select", class: 'btn btn-success', data: { confirm: "Are you sure you select this class?" } %>
+              <% end %>
+            <% else %>
+              <%= form_for(:enrollment, :method => :delete, url: enrollments_path) do |f| %>
+              <%= f.hidden_field :user_id, value: current_user.id%>
+              <%= f.hidden_field :course_id, value: course.id%>
+              <%= f.button "Cancel", class: 'btn btn-warning', data: { confirm: "Are you sure you Cancel this class?" } %>
+              <% end %>
+            <% end %>
+          </td>
       </tr>
     <% end %>
   </tbody>
