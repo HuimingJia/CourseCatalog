@@ -8,27 +8,35 @@
 <% if !logged_in? %>
 <%= link_to "Sign up now!", signup_path, {style: "color:#FFFFFF", class: "btn btn-lg btn-primary text-danger"} %>
 <%= link_to "Log in now!", login_path,  {style: "color:#FFFFFF", class: "btn btn-lg btn-primary"} %>
-</br>
+<br><br>
+
 <div class="row">
-  <div class="col-xs-6 col-md-3">
-    <a href="#" class="thumbnail">
-      <%= image_url('SCC.png')%>
-    </a>
+  <div class="col-md-4">
+    <div class="thumbnail">
+      <%= image_tag("seal.png",class: "media-object",style: "height:200px;width:100%") %>
+      <div class="caption">
+        <h3>Thumbnail label</h3>
+        <p>...</p>
+      </div>
+    </div>
   </div>
-  <div class="col-xs-6 col-md-3">
-    <a href="#" class="thumbnail">
-      <%= image_url('SCC.png')%>
-    </a>
+  <div class="col-md-4">
+    <div class="thumbnail">
+      <%= image_tag("brandeis-front.jpg",class: "media-object",style: "height:200px;width:100%") %>
+      <div class="caption">
+        <h3>Thumbnail label</h3>
+        <p>...</p>
+      </div>
+    </div>
   </div>
-  <div class="col-xs-6 col-md-3">
-    <a href="#" class="thumbnail">
-      <%= image_url('SCC.png')%>
-    </a>
-  </div>
-  <div class="col-xs-6 col-md-3">
-    <a href="#" class="thumbnail">
-      <%= image_url('SCC.png')%>
-    </a>
+  <div class="col-md-4">
+    <div class="thumbnail">
+      <%= image_tag("SCC.jpg", class: "media-object", style: "height:200px;width:100%") %>
+      <div class="caption">
+        <h3>Thumbnail label</h3>
+        <p>...</p>
+      </div>
+    </div>
   </div>
 </div>
 <% end %>

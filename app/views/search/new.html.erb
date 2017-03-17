@@ -1,6 +1,6 @@
-<h1>Log in</h1>
+<h1>Seach Results</h1>
 <div class="row well">
-    <%= form_for(:search, url: search_path, :html => {:class => 'navbar-form navbar-left'}) do |f| %>
+    <%= form_for(:search, url: search_path, :html => {:class => 'navbar-form navbar-center',:style => 'text-align: center;'}) do |f| %>
       <div class="form-group">
         <%= f.text_field :name, class: 'form-control', placeholder: 'Search'%>
       </div>
@@ -12,16 +12,14 @@
       </div>
     <% end %>
 </div>
-<h1>Seach Results</h1>
-
 <table class="table">
   <thead>
     <tr>
       <th class="col-md-1">Code</th>
       <th class="col-md-2">Name</th>
       <th class="col-md-6">Description</th>
-      <th class="col-md-1">IS</th>
-      <th class="col-md-3">Select Class</th>
+      <th class="col-md-1 center">IS</th>
+      <th class="col-md-2 center">Select Class</th>
     </tr>
   </thead>
   <tbody>
@@ -30,15 +28,17 @@
         <td><%= course.code %></td>
         <td><%= course.name %></td>
         <td><%= course.description %></td>
-        <td>
+        <td class="center">
           <% if course.independent_study == 't'%>
             <h4><span class="label label-info">Yes</span></h4>
           <% else %>
             <h4><span class="label label-default">No</span></h4>
           <% end %>
         </td>
-        <td>
+        <td class="center">
           <%= form_for(:enrollment, url: enrollments_path) do |f| %>
+            <%= f.hidden_field :user_id, value: current_user.id%>
+            <%= f.hidden_field :course_id, value: course.id%>
             <%= f.button "Select", class: 'btn btn-success', data: { confirm: "Are you sure you select this class?" } %>
           <% end %>
         </td>

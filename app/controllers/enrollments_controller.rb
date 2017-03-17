@@ -24,7 +24,7 @@ class EnrollmentsController < ApplicationController
   # POST /enrollments
   # POST /enrollments.json
   def create
-    @enrollment = Enrollment.new(enrollment_params)
+    @enrollment = Enrollment.new(course_id: params[:enrollment][:course_id], user_id:params[:enrollment][:user_id] )
 
     respond_to do |format|
       if @enrollment.save
