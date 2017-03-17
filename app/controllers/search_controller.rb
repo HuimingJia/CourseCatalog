@@ -1,17 +1,22 @@
 class SearchController < ApplicationController
   def new
-    @name  = params[:search][:name]
+    @name = params[:search][:name].strip
     @subject  = params[:search][:subject] || 'All'
 
+    @courses = Array.new
+    @temp = Course.where("name LIKE ?", "%#{@name}%")
     if @subject == 'All'
-      @courses = Course.where(name: params[:search][:name])
+      @temp.each do |course|
+        @courses.push(course)
+      end
     else
-      @courses = Course.where(name: params[:search][:name])
+      @temp.each do |course|
+        if course.subjects.include?(Subject.where(name: @subject).first)
+          @courses.push(course)
+        end
+      end
     end
 
-    @courses.each do |course|
-      puts course.subjects.all.name
-    end
     @state = Hash.new
     @courses.each do |course|
       if course.users.include?(current_user)

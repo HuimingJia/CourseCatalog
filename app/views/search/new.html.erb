@@ -23,7 +23,7 @@
     </tr>
   </thead>
   <tbody>
-    <% @courses.all.collect do |course| %>
+    <% @courses.each do |course| %>
       <tr>
         <td><%= course.code %></td>
         <td><%= course.name %></td>
