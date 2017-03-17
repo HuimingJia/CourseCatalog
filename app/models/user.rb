@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  has_many :enrollments
+  has_many :enrollments, dependent: :destroy
   has_many :courses, :through => :enrollments
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i

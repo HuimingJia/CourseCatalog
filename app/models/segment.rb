@@ -1,2 +1,0 @@
-class Segment < ApplicationRecord
-end

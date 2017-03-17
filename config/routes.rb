@@ -23,6 +23,8 @@ Rails.application.routes.draw do
   put '/users/:id', to: 'users#update'
   patch '/users/:id', to: 'users#update'
 
+  resources :relationships
+
   # resources :courses
   # resources :instructors
   # resources :subjects

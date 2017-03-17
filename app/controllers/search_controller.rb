@@ -8,6 +8,10 @@ class SearchController < ApplicationController
     else
       @courses = Course.where(name: params[:search][:name])
     end
+
+    @courses.each do |course|
+      puts course.subjects.all.name
+    end
     @state = Hash.new
     @courses.each do |course|
       if course.users.include?(current_user)

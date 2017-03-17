@@ -17,8 +17,12 @@ end
 
 json = ActiveSupport::JSON.decode(File.read('db/course.json'))
 json.each do |item|
+  @course = Course.create(:code => item['code'], :name => item['name'], :description => item['description'],:independent_study => item['independent_study'])
   subjects_json = item['subjects']
-  Course.create(:code => item['code'], :name => item['name'], :description => item['description'],:independent_study => item['independent_study'])
+  subjects_json.each do |subject|
+    Relationship.create(:course_id => @course.id,:subject_identifier => subject['id'])
+  end
+
 end
 
 json = ActiveSupport::JSON.decode(File.read('db/instructor.json'))
