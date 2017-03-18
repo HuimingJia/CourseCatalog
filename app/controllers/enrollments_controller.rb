@@ -25,15 +25,10 @@ class EnrollmentsController < ApplicationController
   # POST /enrollments.json
   def create
     @enrollment = Enrollment.new(course_id: params[:enrollment][:course_id], user_id:params[:enrollment][:user_id] )
-
-    respond_to do |format|
-      if @enrollment.save
-        format.html { redirect_to @enrollment, notice: 'Enrollment was successfully created.' }
-        format.json { render :show, status: :created, location: @enrollment }
-      else
-        format.html { render :new }
-        format.json { render json: @enrollment.errors, status: :unprocessable_entity }
-      end
+    if @enrollment.save
+      render 'show', notice: 'Enrollment was successfully created.'
+    else
+      render 'show', notice: 'Something Wrong T_T!.'
     end
   end
 

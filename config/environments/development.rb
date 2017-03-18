@@ -1,4 +1,6 @@
 Rails.application.configure do
+  config.exceptions_app = ->(env) { StaticPagesController.action(:error).call(env) }
+  config.exceptions_app = self.routes
   # Settings specified here will take precedence over those in config/application.rb.
 
   # In the development environment your application's code is reloaded on

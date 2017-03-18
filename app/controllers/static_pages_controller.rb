@@ -10,4 +10,10 @@ class StaticPagesController < ApplicationController
 
   def home
   end
+
+  def error
+    status_code = params[:code] || 500
+    flash.alert = "Status #{status_code}"
+    render 'error', status: status_code
+  end
 end
