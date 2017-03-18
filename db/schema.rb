@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170317185608) do
+ActiveRecord::Schema.define(version: 20170318072456) do
 
   create_table "courses", force: :cascade do |t|
     t.string   "code"
@@ -43,13 +43,13 @@ ActiveRecord::Schema.define(version: 20170317185608) do
   end
 
   create_table "relationships", force: :cascade do |t|
-    t.string   "subject_identifier"
     t.integer  "course_id"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.string   "subjectidentifier"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
     t.index ["course_id"], name: "index_relationships_on_course_id"
-    t.index ["subject_identifier", "course_id"], name: "index_relationships_on_subject_identifier_and_course_id", unique: true
-    t.index ["subject_identifier"], name: "index_relationships_on_subject_identifier"
+    t.index ["subjectidentifier", "course_id"], name: "index_relationships_on_subjectidentifier_and_course_id", unique: true
+    t.index ["subjectidentifier"], name: "index_relationships_on_subjectidentifier"
   end
 
   create_table "segments", force: :cascade do |t|

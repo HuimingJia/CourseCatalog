@@ -2,13 +2,23 @@
 # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
 #
 # Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+
 require 'json'
+# json = ActiveSupport::JSON.decode(File.read('db/course.json'))
+# json.each do |item|
+#   @course = Course.create(:code => item['code'], :name => item['name'], :description => item['description'],:independent_study => item['independent_study'])
+#   @course.saverail
+#   subjects_json = item['subjects']
+#   subjects_json.each do |subject|
+#     Relationship.create(:course_id => @course.id,:subjectidentifier => subject['id'])
+#   end
+# end
 Subject.delete_all
 Course.delete_all
 Instructor.delete_all
+Relationship.delete_all
+Enrollment.delete_all
+User.delete_all
 
 json = ActiveSupport::JSON.decode(File.read('db/subject.json'))
 json.each do |item|
@@ -20,9 +30,11 @@ json.each do |item|
   @course = Course.create(:code => item['code'], :name => item['name'], :description => item['description'],:independent_study => item['independent_study'])
   subjects_json = item['subjects']
   subjects_json.each do |subject|
-    Relationship.create(:course_id => @course.id,:subject_identifier => subject['id'])
+      @relationship = Relationship.create(:course_id => @course.id,:subjectidentifier => subject['id'])
+      puts @relationship.course_id
+      puts @relationship.subjectidentifier
+      puts @relationship.valid?
   end
-
 end
 
 json = ActiveSupport::JSON.decode(File.read('db/instructor.json'))
