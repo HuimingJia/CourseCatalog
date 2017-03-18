@@ -24,9 +24,9 @@ Rails.application.routes.draw do
   patch '/users/:id', to: 'users#update'
 
   resources :relationships
-  %w( 404 422 500 503 ).each do |code|
-   get code, :to => "static_pages#error", :code => code
- end
+  %w(404 422 500).each do |code|
+    get code, to: "static_pages#error", code: code
+  end
 
   # resources :courses
   # resources :instructors

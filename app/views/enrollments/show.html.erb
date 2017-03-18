@@ -1,3 +1,7 @@
-<div class="center well">
-<h2><%= notice %></h2>
+<% if status == 'T'%>
+<div class="center alert alert-success">
+<% else %>
+<div class="center alert alert-danger">
+<% end %>
+<h2><%= message %></h2>
 </div>

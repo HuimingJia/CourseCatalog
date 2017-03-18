@@ -1,6 +1,6 @@
 Rails.application.configure do
-  config.exceptions_app = ->(env) { StaticPagesController.action(:error).call(env) }
-  config.exceptions_app = self.routes
+  # config.exceptions_app = ->(env) { StaticPagesController.action(:error).call(env) }
+  # config.exceptions_app = self.routes
   # Settings specified here will take precedence over those in config/application.rb.
 
   # In the development environment your application's code is reloaded on
@@ -13,6 +13,7 @@ Rails.application.configure do
 
   # Show full error reports.
   config.consider_all_requests_local = true
+  # config.consider_all_requests_local = false
 
   # Enable/disable caching. By default caching is disabled.
   if Rails.root.join('tmp/caching-dev.txt').exist?

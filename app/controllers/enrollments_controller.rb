@@ -26,9 +26,9 @@ class EnrollmentsController < ApplicationController
   def create
     @enrollment = Enrollment.new(course_id: params[:enrollment][:course_id], user_id:params[:enrollment][:user_id] )
     if @enrollment.save
-      render 'show', notice: 'Enrollment was successfully created.'
+      render 'show', locals: { message: 'Enrollment was successfully created.', status: 'T'}
     else
-      render 'show', notice: 'Something Wrong T_T!.'
+      render 'show', locals: { message: 'omething Wrong T_T!.', status: 'F'}
     end
   end
 
@@ -49,10 +49,10 @@ class EnrollmentsController < ApplicationController
   # DELETE /enrollments/1
   # DELETE /enrollments/1.json
   def destroy
-    Enrollment.where(course_id: params[:enrollment][:course_id].to_i, user_id:params[:enrollment][:user_id].to_i).destroy_all
-    respond_to do |format|
-      format.html { redirect_to enrollments_url, notice: 'Enrollment was successfully destroyed.' }
-      format.json { head :no_content }
+    if Enrollment.where(course_id: params[:enrollment][:course_id].to_i, user_id:params[:enrollment][:user_id].to_i).destroy_all
+      render 'show', locals: { message: 'Enrollment was successfully destroyed.', status: 'T'}
+    else
+      render 'show', locals: { message: 'omething Wrong T_T!.', status: 'F'}
     end
   end
 
