@@ -1,7 +1,5 @@
 <p id="notice"><%= notice %></p>
-
 <h1>Courses</h1>
-
 <table class="table">
   <thead>
     <tr>
@@ -25,23 +23,26 @@
             <h4><span class="label label-default">No</span></h4>
           <% end %>
         </td>
-          <td class="center">
-            <% if @state[course.id] == false %>
-              <%= form_for(:enrollment, :method => :post,url: enrollments_path) do |f| %>
-              <%= f.hidden_field :user_id, value: current_user.id%>
-              <%= f.hidden_field :course_id, value: course.id%>
-              <%= f.button "Select", class: 'btn btn-success' %>
-              <% end %>
-            <% else %>
-              <%= form_for(:enrollment, :method => :delete, url: enrollments_path) do |f| %>
-              <%= f.hidden_field :user_id, value: current_user.id%>
-              <%= f.hidden_field :course_id, value: course.id%>
-              <%= f.button "Cancel", class: 'btn btn-warning'%>
-              <% end %>
+        <td class="center">
+          <% if @state[course.id] == false %>
+            <%= form_for(:enrollment, :method => :post,url: enrollments_path) do |f| %>
+            <%= f.hidden_field :user_id, value: current_user.id%>
+            <%= f.hidden_field :course_id, value: course.id%>
+            <%= f.button "Select", class: 'btn btn-success' %>
             <% end %>
-          </td>
+          <% else %>
+            <%= form_for(:enrollment, :method => :delete, url: enrollments_path) do |f| %>
+            <%= f.hidden_field :user_id, value: current_user.id%>
+            <%= f.hidden_field :course_id, value: course.id%>
+            <%= f.button "Cancel", class: 'btn btn-warning'%>
+            <% end %>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 <br>
+<div class="center">
+<%= will_paginate @courses,renderer: BootstrapPagination::Rails%>
+</div>

@@ -10,8 +10,7 @@ Rails.application.routes.draw do
   get '/login',   to: 'sessions#new'
   post '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
-  post '/search',   to: 'search#new'
-  get '/search',   to: 'search#page'
+  get '/search',   to: 'search#new'
   post '/enrollments', to: 'enrollments#create', as: 'enrollments'
   get '/enrollments', to: 'enrollments#show', as: 'enrollment'
   delete '/enrollments', to: 'enrollments#destroy'
@@ -22,7 +21,7 @@ Rails.application.routes.draw do
   get '/users/:id', to:  'users#show', as: 'user'
   put '/users/:id', to: 'users#update'
   patch '/users/:id', to: 'users#update'
-  
+
   %w(404 422 500).each do |code|
     get code, to: "static_pages#error", code: code
   end

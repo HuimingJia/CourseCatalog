@@ -4,7 +4,8 @@ class CoursesController < ApplicationController
   # GET /courses
   # GET /courses.json
   def index
-    @courses = Course.all
+    @courses = Course.all.paginate(page:params[:page],per_page:10)
+    puts @courses.count
     @state = Hash.new
     @courses.each do |course|
       if course.users.include?(current_user)
