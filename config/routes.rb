@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   post '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
   get '/search',   to: 'search#new'
+  get '/searchpage', to: 'search#page'
   post '/enrollments', to: 'enrollments#create', as: 'enrollments'
   get '/enrollments', to: 'enrollments#show', as: 'enrollment'
   delete '/enrollments', to: 'enrollments#destroy'

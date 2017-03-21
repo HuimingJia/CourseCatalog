@@ -13,19 +13,13 @@
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <%= form_for(:search, url: search_path, :html => {:class => 'navbar-form navbar-left',method: :get}) do |f| %>
-          <div class="form-group">
-            <%= f.text_field :name, class: 'form-control', placeholder: 'Class Name'%>
-            <%= f.hidden_field :subject, value: nil%>
-          </div>
-          <%= f.button "Search", class: 'btn btn-default' %>
-        <% end %>
       <% if logged_in? %>
       <ul class="nav navbar-nav">
         <li><%= link_to 'Home', user_path(current_user)%></li>
         <li><%= link_to 'Subjects', subjects_path%></li>
         <li><%= link_to 'Courses', courses_path%></li>
         <li><%= link_to 'Instructors', instructors_path%></li>
+        <li><%= link_to 'Search',{:controller => "search", :action => "page", :search => {:name => "", :subject => ""}}%></li>
       </ul>
       <% end %>
       <ul class="nav navbar-nav navbar-right">

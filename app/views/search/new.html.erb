@@ -1,59 +1,17 @@
 <h1>Courses Seach</h1>
 <div class="row well">
-    <%= form_for(:search, url: search_path, :html => {:class => 'navbar-form navbar-center',:style => 'text-align: center;',method: :get}) do |f| %>
+    <%= form_for(:search, url: search_path, :html => {:id => "search_bar",:class => 'navbar-form navbar-center',:style => 'text-align: center;',method: :get}) do |f| %>
       <div class="form-group">
         <%= f.text_field :name, class: 'form-control', placeholder: 'Search',value: @course_name%>
       </div>
       <div class="form-group">
-        <%= f.select :subject, options_for_select(@subjects, :selected => @subject_name), {}, {:class => "form-control"}%>
-      </div>
-      <div class="form-group">
-        <%= f.button "Search", class: 'btn btn-default' %>
+        <%= f.select :subject, options_for_select(@subjects, :selected => @subject_name),{}, {:class => "form-control"}%>
       </div>
     <% end %>
 </div>
-<table class="table">
-  <thead>
-    <tr>
-      <th class="col-md-1">Code</th>
-      <th class="col-md-2">Name</th>
-      <th class="col-md-6">Description</th>
-      <th class="col-md-1 center">IS</th>
-      <th class="col-md-1 center">Select</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @courses.each do |course| %>
-      <tr>
-        <td><%= course.code %></td>
-        <td><%= course.name %></td>
-        <td><%= course.description %></td>
-        <td class="center">
-          <% if course.independent_study == 't'%>
-            <h4><span class="label label-info">Yes</span></h4>
-          <% else %>
-            <h4><span class="label label-default">No</span></h4>
-          <% end %>
-        </td>
-          <td class="center">
-            <% if @state[course.id] == false %>
-              <%= form_for(:enrollment, :method => :post,url: enrollments_path) do |f| %>
-              <%= f.hidden_field :user_id, value: current_user.id%>
-              <%= f.hidden_field :course_id, value: course.id%>
-              <%= f.button "Select", class: 'btn btn-success'  %>
-              <% end %>
-            <% else %>
-              <%= form_for(:enrollment, :method => :delete, url: enrollments_path) do |f| %>
-              <%= f.hidden_field :user_id, value: current_user.id%>
-              <%= f.hidden_field :course_id, value: course.id%>
-              <%= f.button "Cancel", class: 'btn btn-warning'  %>
-              <% end %>
-            <% end %>
-          </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div id="search_results">
+<%= render 'form', courses: @courses,states: @states %>
 <div class="center">
-<%= will_paginate @courses,renderer: BootstrapPagination::Rails%>
+<%= will_paginate @courses, remote: true, renderer: BootstrapPagination::Rails%>
+</div>
 </div>
