@@ -2,7 +2,6 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 $ ->
-  console.log "ajax"
   $('input#search_name').change ->
     $("select#search_name").attr("defaultValue", "newValue");
     $.ajax '/search',
