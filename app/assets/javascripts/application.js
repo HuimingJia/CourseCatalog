@@ -15,36 +15,3 @@
 //= require turbolinks
 //= require_tree .
 //= require bootstrap
-$(document).ready(function(){
-  $("#search_name").change(function(){
-    $("#search_name").attr("defaultValue", "newValue");
-    $.ajax({
-        type: "GET",
-        url: '/search',
-        data: {"search": {"name": $('input#search_name').val(), "subject": $('select#search_subject option:selected').val()}},
-        dataType: "html",
-        success:function(data){
-          $("#search_results").html(data)
-        },
-        error:function(jqXHR){
-          alert(jqXHR)
-        }
-    });
-
-  });
-
-  $("#search_subject").change(function(){
-    $.ajax({
-        type: "GET",
-        url: '/search',
-        data: {"search": {"name": $('input#search_name').val(), "subject": $('select#search_subject option:selected').val()}},
-        dataType: "html",
-        success:function(data){
-          $("#search_results").html(data)
-        },
-        error:function(jqXHR){
-          alert(jqXHR+textStatus)
-        }
-    });
-  });
-});

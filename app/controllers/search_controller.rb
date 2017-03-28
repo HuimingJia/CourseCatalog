@@ -2,9 +2,12 @@ class SearchController < ApplicationController
   def new
     @course_name = params[:search][:name].strip
     @subject_name  = params[:search][:subject]
+
     if @subject_name == "All"
       @subject_name = ""
     end
+
+
     @courses = Course.joins(:subjects).where("courses.name LIKE ?", "%#{@course_name}%").where("subjects.name Like ?", "%#{@subject_name}%").group(:course_id)
     @states = Hash.new
     @courses.each do |course|
