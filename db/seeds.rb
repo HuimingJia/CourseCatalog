@@ -10,7 +10,7 @@ require 'json'
 #   @course.saverail
 #   subjects_json = item['subjects']
 #   subjects_json.each do |subject|
-#     Relationship.create(:course_id => @course.id,:subjectidentifier => subject['id'])
+#     Relationship.create(:course_id => @course.id,:subject_id => subject['id'])
 #   end
 # end
 Subject.delete_all
@@ -22,7 +22,7 @@ User.delete_all
 
 json = ActiveSupport::JSON.decode(File.read('db/subject.json'))
 json.each do |item|
-  Subject.create(:identifier => item['id'],:abbreviation => item['abbreviation'], :name => item['name'])
+  Subject.create(:identifier => item['id'], :abbreviation => item['abbreviation'], :name => item['name'])
 end
 
 json = ActiveSupport::JSON.decode(File.read('db/course.json'))
@@ -30,9 +30,9 @@ json.each do |item|
   @course = Course.create(:code => item['code'], :name => item['name'], :description => item['description'],:independent_study => item['independent_study'])
   subjects_json = item['subjects']
   subjects_json.each do |subject|
-      @relationship = Relationship.create(:course_id => @course.id,:subjectidentifier => subject['id'])
+      @relationship = Relationship.create(:course_id => @course.id,:subject_id => subject['id'])
       puts @relationship.course_id
-      puts @relationship.subjectidentifier
+      puts @relationship.subject_id
       puts @relationship.valid?
   end
 end
